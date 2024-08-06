@@ -1,0 +1,4 @@
+{
+    "watch": ["pages", "components", "lib"],
+    "exec": "next dev"
+  }

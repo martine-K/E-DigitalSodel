@@ -1,24 +1,78 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
 import NavLayout from "./components/NavLayout";
-import { FcGoogle } from 'react-icons/fc';
-import Image from 'next/image'; // Import Image from next/image
+import { IoIosArrowBack } from 'react-icons/io';
+import { FcGoogle } from "react-icons/fc";
+import Image from "next/image"; // Import Image from next/image
 
-const Homepage = () => {
+// Import required icons from react-icons
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
+export default function Home() {
+  // State to manage password visibility
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <NavLayout>
-      <div className="flex flex-col items-center min-h-screen py-2bg-gray-300 justify-center ">
-        <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-          <div className="bg-white rounded-2xl shadow-2xl flex w-2/3 max-w-4xl">
-          <div className="w-3/5 p-1.5"><p>Sign In</p></div>
-          <div className="w-2/5 bg-green-300 text-white rounded-tr-2xl rounded-br-2xl"><p>Sign Up into your account</p></div>
-
-          </div>
-
-        </main>
-        
-      </div>
+      <main className="py-10 judtify-center items-center mt-5">
+        <div className=" h=screen flex flex-col justify-center items-center">
+          <aside className="bg-white w-full max-w-md rounded-xl bg-opacity-20 shadow-lg shadow-black">
+            <h1 className="text-center text-black font-semibold text-5xl rounded-t-xl m-0 py-4">Sign In</h1>
+            <form className="p-6">
+              
+              {/* Username Label and Input */}
+              <label htmlFor="username" className="block text-black text-lg font-medium mb-2">
+                UserName
+              </label>
+              <input 
+                type="text"
+                id="username"
+                name="username"
+                placeholder="UserName"
+                className="py-2 px-3 w-full text-black text-lg font-light outline-none"
+              />
+              
+              {/* Password Label and Input */}
+              <label htmlFor="password" className="block text-black text-lg font-medium mt-5 mb-2">
+                Password
+              </label>
+              <div className="relative">
+                <input 
+                  type={showPassword ? "text" : "password"} // Toggle password visibility
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                  className="py-2 px-3 w-full text-black text-lg font-light outline-none"
+                />
+                <button 
+                  type="button" 
+                  onClick={togglePasswordVisibility} 
+                  className="absolute inset-y-0 right-3 flex items-center text-gray-500"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+              
+              <div className="flex mt-5 justify-between items-center">
+                <Link
+                  href="/Register" // Corrected href to match your directory structure
+                  className="text-white cursor-pointer transition hover:text-black"
+                >
+                  Not Yet Registered?
+                </Link>
+                <button type="submit" className="bg-black text-white font-medium py-2 px-8 transition hover:text-blue">
+                  Sign In
+                </button>
+              </div>
+            </form>
+          </aside>
+        </div>
+      </main>
     </NavLayout>
   );
-};
-
-export default Homepage;
+}

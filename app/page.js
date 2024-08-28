@@ -59,14 +59,15 @@ export default function Home() {
               </div>
               
               <div className="flex mt-5 justify-between items-center">
-                <Link
-                  href="/Register" // Corrected href to match your directory structure
-                  className="text-white cursor-pointer transition hover:text-black"
+                <Link href="/SignUp" // Corrected href to match your directory structure
+                  className="text-black cursor-pointer transition hover:text-black"
                 >
                   Not Yet Registered?
                 </Link>
                 <button type="submit" className="bg-black text-white font-medium py-2 px-8 transition hover:text-blue">
+                  <Link href="/services">
                   Sign In
+                  </Link>
                 </button>
               </div>
             </form>
